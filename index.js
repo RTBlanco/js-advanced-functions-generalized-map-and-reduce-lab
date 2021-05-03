@@ -7,19 +7,27 @@ function map(src, callback){
   return ar
 }
 
-function reduce(src, callback, startingValue) {
-  let total;
-  if (startingValue) {
-    total = startingValue;
-    for (let i = 0; i < src.length; i++) {
-      total = callback(src[i], total);
-    }
-    return total;
-  } else {
-    total = src[0];
-    for (let i = 1; i < src.length; i++) {
-      total = callback(src[i], total);
-    }
-    return total;
+// function reduce(src, callback, startingValue) {
+//   let total;
+//   if (startingValue) {
+//     total = startingValue;
+//     for (let i = 0; i < src.length; i++) {
+//       total = callback(src[i], total);
+//     }
+//     return total;
+//   } else {
+//     total = src[0];
+//     for (let i = 1; i < src.length; i++) {
+//       total = callback(src[i], total);
+//     }
+//     return total;
+//   }
+// }
+
+function reduce(src, callback, startingValue = src[0]){
+  // let total = startingValue
+  for (let i = 1; i < src.length; i++) {
+    startingValue = callback(src[i], startingValue);
   }
+  return startingValue
 }
